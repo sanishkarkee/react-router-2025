@@ -51,8 +51,22 @@
 nav {
   background-color: aliceblue;
   padding: 16px 32px;
+
+
 }
 
 nav a {
   margin-right: 16px;
+  color: coral;
+  text-decoration: none;
+
 }
+
+/* ---------- One way to style active class ---------- */
+/* nav a.active {
+  font-weight: bold;
+  color: cornflowerblue;
+  font-size: 20px;
+} */
+
+/* Other way is to use 'STYLE' inside <Navlink style={...}> Home</Navlink> */
