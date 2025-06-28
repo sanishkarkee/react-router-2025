@@ -48,7 +48,7 @@
 
 
 /* ------------CSS to custom made elements---------- */
-nav {
+.primary-nav {
   background-color: aliceblue;
   padding: 16px 32px;
 
@@ -70,3 +70,9 @@ nav a {
 } */
 
 /* Other way is to use 'STYLE' inside <Navlink style={...}> Home</Navlink> */
+
+
+.secondary-nav {
+  background-color: lightblue;
+  padding: 10px 20px;
+}
