@@ -12,6 +12,9 @@ import Users from './components/Users';
 import { UserDetails } from './components/UserDetails';
 import { Admin } from './components/Admin';
 import Skeleton from './components/skeletonLoader/Skeleton';
+import { Profile } from './components/Profile';
+import { AuthProvider } from './components/auth';
+import { Login } from './components/Login';
 const LazyAbout = React.lazy(() => import('./components/About'));
 
 // Skeleton Loader fallback component
@@ -27,11 +30,12 @@ const AboutSkeleton = () => (
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Navbar />
 
       <Routes>
         <Route path='/' element={<Home />} />
+
         <Route
           path='about'
           element={
@@ -40,6 +44,9 @@ function App() {
             </Suspense>
           }
         />
+
+        <Route path='*' element={<NoMatch />} />
+
         <Route path='order-summary' element={<Ordersummary />} />
 
         <Route path='products' element={<Products />}>
@@ -54,8 +61,12 @@ function App() {
           <Route path=':userId' element={<UserDetails />} />
           <Route path='admin' element={<Admin />} />
         </Route>
+
+        <Route path='profile' element={<Profile />} />
+
+        <Route path='login' element={<Login />} />
       </Routes>
-    </>
+    </AuthProvider>
   );
 }
 

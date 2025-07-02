@@ -2,6 +2,8 @@ import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   const navLinkStyles = ({ isActive }) => {
+    const auth = useAuth();
+
     return {
       fontWeight: isActive ? 'bold' : 'normal',
       color: isActive ? 'cornflowerblue' : 'coral',
@@ -26,6 +28,12 @@ const Navbar = () => {
       <NavLink to='users' style={navLinkStyles}>
         Users
       </NavLink>
+
+      <NavLink to='profile' style={navLinkStyles}>
+        Profile
+      </NavLink>
+
+      {!auth.user && <NavLink to='login'>Login</NavLink>}
     </nav>
   );
 };
