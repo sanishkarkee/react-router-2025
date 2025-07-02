@@ -1,7 +1,7 @@
+import React, { Suspense } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
-import About from './components/About';
 import Navbar from './components/Navbar';
 import Ordersummary from './components/Ordersummary';
 import { NoMatch } from './components/NoMatch';
@@ -11,6 +11,19 @@ import NewProduct from './components/NewProduct';
 import Users from './components/Users';
 import { UserDetails } from './components/UserDetails';
 import { Admin } from './components/Admin';
+import Skeleton from './components/skeletonLoader/Skeleton';
+const LazyAbout = React.lazy(() => import('./components/About'));
+
+// Skeleton Loader fallback component
+const AboutSkeleton = () => (
+  <div style={{ padding: '2rem' }}>
+    <Skeleton height='2rem' width='60%' />
+    <br />
+    <Skeleton height='1rem' width='90%' />
+    <br />
+    <Skeleton height='1rem' width='80%' />
+  </div>
+);
 
 function App() {
   return (
@@ -19,7 +32,14 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='about' element={<About />} />
+        <Route
+          path='about'
+          element={
+            <Suspense fallback={<AboutSkeleton />}>
+              <LazyAbout />
+            </Suspense>
+          }
+        />
         <Route path='order-summary' element={<Ordersummary />} />
 
         <Route path='products' element={<Products />}>
@@ -34,8 +54,6 @@ function App() {
           <Route path=':userId' element={<UserDetails />} />
           <Route path='admin' element={<Admin />} />
         </Route>
-
-        <Route path='*' element={<NoMatch />} />
       </Routes>
     </>
   );
